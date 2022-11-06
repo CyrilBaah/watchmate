@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from watchlist.models import Movie
+
 
 class MovieSerializer(serializers.Serializer):
     """Movie serializer"""
@@ -7,5 +9,5 @@ class MovieSerializer(serializers.Serializer):
     description = serializers.CharField()
     active = serializers.BooleanField()
     
-    # def create (self, validate_data):
-    #     Mo
+    def create (self, validate_data):
+        return Movie.objects.create(**validate_data)
