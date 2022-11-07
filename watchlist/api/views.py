@@ -20,3 +20,13 @@ def movie_list(request):
             return Response(serializer.data)
         else:
           return Response(serializer._errors)
+      
+      
+@api_view(['GET', 'POST', 'DELETE'])
+def movie_details(request, pk):
+    """Get a single movie details"""
+    if request.method == 'GET':
+        movie = Movie.objects.get(pk=pk)
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+        
