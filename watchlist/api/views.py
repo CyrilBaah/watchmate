@@ -67,28 +67,28 @@ class StreamPlatformAV(APIView):
           return Response(serializer._errors)
       
       
-# class StreamPlatformDetail(APIView):
-#     """Get a single stream platform"""
-#     def get(self, request, pk, *args, **kwargs):
-#         try:
-#             stream = StreamPlatform.objects.get(pk=pk)
-#         except StreamPlatform.DoesNotExist:
-#             return Response({ "Error": "Movie not found" })
-#         serializer = WatchListSerializer(stream)
-#         return Response(serializer.data)
+class StreamPlatformDetail(APIView):
+    """Get a single stream platform"""
+    def get(self, request, pk, *args, **kwargs):
+        try:
+            stream = StreamPlatform.objects.get(pk=pk)
+        except StreamPlatform.DoesNotExist:
+            return Response({ "Error": "Movie not found" })
+        serializer = StreamPlatformSerializer(stream)
+        return Response(serializer.data)
     
-#     """Update a watchlist"""
-#     def put(self, request, pk):
-#         movie = StreamPlatform.objects.get(pk=pk)
-#         serializer = StreamPlatformSerializer(movie, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         else:
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    """Update a watchlist"""
+    def put(self, request, pk):
+        movie = StreamPlatform.objects.get(pk=pk)
+        serializer = StreamPlatformSerializer(movie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-#     """Delete a watchlist"""
-#     def delete(self, request, pk, *args, **kwargs):
-#         movie = StreamPlatform.objects.get(pk=pk)
-#         movie.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
+    """Delete a watchlist"""
+    def delete(self, request, pk, *args, **kwargs):
+        movie = StreamPlatform.objects.get(pk=pk)
+        movie.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
