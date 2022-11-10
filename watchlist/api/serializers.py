@@ -3,9 +3,14 @@ from watchlist.models import Movie
 
 
 class MovieSerializer(serializers.ModelSerializer):
+    length_of_name  = serializers.SerializerMethodField()
     class Meta:
       model = Movie
       fields = "__all__"
+      
+    """Get length of movie name."""
+    def get_length_of_name(self, object):
+        return len(object.name)     
       
       
     """Validate different between name and description."""
