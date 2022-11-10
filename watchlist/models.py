@@ -11,5 +11,13 @@ class WatchList(models.Model):
     def __str__(self):
         return self.title()
     
+
+class StreamPlatform(models.Model):
+    name = models.CharField(max_length=30)
+    about = models.CharField(max_length=150)
+    website = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
     
     
