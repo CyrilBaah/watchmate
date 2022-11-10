@@ -6,7 +6,7 @@ from watchlist.api.serializers import WatchListSerializer
 from rest_framework import status
 
 
-class WatchList(APIView):
+class WatchListAV(APIView):
     """List all watchlist"""
     def get(self, request, *args, **kwargs):
         movies = WatchList.objects.all()
