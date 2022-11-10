@@ -6,14 +6,14 @@ from watchlist.api.serializers import WatchListSerializer
 from rest_framework import status
 
 
-class MovieList(APIView):
-    """List all movies"""
+class WatchList(APIView):
+    """List all watchlist"""
     def get(self, request, *args, **kwargs):
         movies = WatchList.objects.all()
         serializer = WatchListSerializer(movies, many=True)
         return Response(serializer.data)
     
-    """Create a new movie"""
+    """Create a new watchlist"""
     def post(self, request, *args, **kwargs):
         serializer = WatchListSerializer(data=request.data)
         if serializer.is_valid():
@@ -23,8 +23,8 @@ class MovieList(APIView):
           return Response(serializer._errors)
       
       
-class MovieDetails(APIView):
-    """Get a single Movie"""
+class WatchDetails(APIView):
+    """Get a single watchlist"""
     def get(self, request, pk, *args, **kwargs):
         try:
             movie = WatchList.objects.get(pk=pk)
@@ -33,7 +33,7 @@ class MovieDetails(APIView):
         serializer = WatchListSerializer(movie)
         return Response(serializer.data)
     
-    """Update a movie"""
+    """Update a watchlist"""
     def put(self, request, pk):
         movie = WatchList.objects.get(pk=pk)
         serializer = WatchListSerializer(movie, data=request.data)
@@ -43,7 +43,7 @@ class MovieDetails(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-    """Delete a movie"""
+    """Delete a watchlist"""
     def delete(self, request, pk, *args, **kwargs):
         movie = WatchList.objects.get(pk=pk)
         movie.delete()
