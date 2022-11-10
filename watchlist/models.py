@@ -13,6 +13,7 @@ class WatchList(models.Model):
     
 
 class StreamPlatform(models.Model):
+    """Model representing a StreamPlatform"""
     name = models.CharField(max_length=30)
     about = models.CharField(max_length=150)
     website = models.CharField(max_length=100)
