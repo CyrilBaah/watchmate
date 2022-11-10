@@ -54,17 +54,17 @@ class StreamPlatformAV(APIView):
     """List all streamplatforms"""
     def get(self, request, *args, **kwargs):
         streams = StreamPlatform.objects.all()
-        serializer = StreamPlatform(streams, many=True)
+        serializer = StreamPlatformSerializer(streams, many=True)
         return Response(serializer.data)
     
-    # """Create a new watchlist"""
-    # def post(self, request, *args, **kwargs):
-    #     serializer = StreamPlatformSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     else:
-    #       return Response(serializer._errors)
+    """Create a new stream platform"""
+    def post(self, request, *args, **kwargs):
+        serializer = StreamPlatformSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+          return Response(serializer._errors)
       
       
 # class StreamPlatformDetail(APIView):
