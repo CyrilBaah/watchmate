@@ -11,16 +11,16 @@ class WatchListAV(APIView):
     def get(self, request, *args, **kwargs):
         movies = WatchList.objects.all()
         serializer = WatchListSerializer(movies, many=True)
-        return Response(serializer.data)
+        return Response({ "data": serializer.data})
     
     """Create a new watchlist"""
     def post(self, request, *args, **kwargs):
         serializer = WatchListSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response({ "data": serializer.data})
         else:
-          return Response(serializer._errors)
+          return Response(serializer.errors)
       
       
 class WatchDetails(APIView):
@@ -31,7 +31,7 @@ class WatchDetails(APIView):
         except WatchList.DoesNotExist:
             return Response({ "Error": "Movie not found" })
         serializer = WatchListSerializer(movie)
-        return Response(serializer.data)
+        return Response( {"data": serializer.data} )
     
     """Update a watchlist"""
     def put(self, request, pk):
@@ -39,7 +39,7 @@ class WatchDetails(APIView):
         serializer = WatchListSerializer(movie, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response( {"data": serializer.data} )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
@@ -55,16 +55,16 @@ class StreamPlatformAV(APIView):
     def get(self, request, *args, **kwargs):
         streams = StreamPlatform.objects.all()
         serializer = StreamPlatformSerializer(streams, many=True)
-        return Response(serializer.data)
+        return Response( { "data": serializer.data} )
     
     """Create a new stream platform"""
     def post(self, request, *args, **kwargs):
         serializer = StreamPlatformSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response( {"data": serializer.data} )
         else:
-          return Response(serializer._errors)
+          return Response(serializer.errors)
       
       
 class StreamPlatformDetail(APIView):
@@ -73,9 +73,9 @@ class StreamPlatformDetail(APIView):
         try:
             stream = StreamPlatform.objects.get(pk=pk)
         except StreamPlatform.DoesNotExist:
-            return Response({ "Error": "Movie not found" })
+            return Response({ "Error": "Movie not found", })
         serializer = StreamPlatformSerializer(stream)
-        return Response(serializer.data)
+        return Response({ "data": serializer.data })
     
     """Update a watchlist"""
     def put(self, request, pk):
@@ -83,7 +83,7 @@ class StreamPlatformDetail(APIView):
         serializer = StreamPlatformSerializer(movie, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response({ "data": serializer.data})
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
