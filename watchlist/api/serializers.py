@@ -11,7 +11,8 @@ class WatchListSerializer(serializers.ModelSerializer):
   reviews = ReviewSerializer(many=True, read_only=True)
   class Meta:
     model = WatchList
-    fields = "__all__"
+    exclude = ('watchlist', )
+    # fields = "__all__"
       
       
 class StreamPlatformSerializer(serializers.ModelSerializer):
