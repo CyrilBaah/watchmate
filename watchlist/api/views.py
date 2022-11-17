@@ -5,6 +5,8 @@ from watchlist.api.serializers import WatchListSerializer, StreamPlatformSeriali
 from rest_framework import status
 from rest_framework import generics
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from watchlist.api.permissions import AdminOrReadOnly
 
 
 class WatchListAV(APIView):
@@ -129,6 +131,7 @@ class ReviewCreate(generics.CreateAPIView):
 class ReviewList(generics.ListAPIView):
     # queryset = Review.objects.all()
     serializer_class = ReviewSerializer 
+    permission_classes = [IsAuthenticatedOrReadOnly]
     
     """Get specific review by id"""
     def get_queryset(self):
@@ -138,6 +141,9 @@ class ReviewList(generics.ListAPIView):
 class ReviewDetail(generics.RetrieveUpdateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AdminOrReadOnly]
+    
     
     # """Get a single review"""
     # def get(self, request, *args, **kwargs):
