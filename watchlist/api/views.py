@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from watchlist.api.permissions import AdminOrReadOnly
+from watchlist.api.permissions import AdminOrReadOnly, ReviewUserOrReadOnly
 
 
 class WatchListAV(APIView):
@@ -142,7 +142,7 @@ class ReviewDetail(generics.RetrieveUpdateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     # permission_classes = [IsAuthenticatedOrReadOnly]
-    permission_classes = [AdminOrReadOnly]
+    permission_classes = [ReviewUserOrReadOnly]
     
     
     # """Get a single review"""
