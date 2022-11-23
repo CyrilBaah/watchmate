@@ -138,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         "rest_framework.permissions.IsAuthenticated",
 #     ),
 # }
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKEN': True,
+}
