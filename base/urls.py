@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('watchlist/', include('watchlist.api.urls'))
+    path('watch/', include('watchlist.api.urls')),
+    path('account/', include('userapp.urls')),
+    # path("api-auth/", include("rest_framework.urls")), # temporary authentication
 ]
