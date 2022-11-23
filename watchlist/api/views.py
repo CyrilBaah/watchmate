@@ -58,6 +58,8 @@ class WatchDetails(APIView):
     
     
 class StreamPlatformAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    
     """List all streamplatforms"""
     def get(self, request, *args, **kwargs):
         streams = StreamPlatform.objects.all()
@@ -75,6 +77,7 @@ class StreamPlatformAV(APIView):
       
       
 class StreamPlatformDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
     
     """Get a single stream platform"""
     def get(self, request, pk, *args, **kwargs):
