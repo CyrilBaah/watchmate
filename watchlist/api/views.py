@@ -58,6 +58,8 @@ class WatchDetails(APIView):
     
     
 class StreamPlatformAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    
     """List all streamplatforms"""
     def get(self, request, *args, **kwargs):
         streams = StreamPlatform.objects.all()
@@ -75,6 +77,7 @@ class StreamPlatformAV(APIView):
       
       
 class StreamPlatformDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
     
     """Get a single stream platform"""
     def get(self, request, pk, *args, **kwargs):
@@ -147,7 +150,8 @@ class ReviewCreate(generics.CreateAPIView):
 class ReviewList(generics.ListAPIView):
     # queryset = Review.objects.all()
     serializer_class = ReviewSerializer 
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticated]
     
     """Get specific review by id"""
     def get_queryset(self):
