@@ -151,6 +151,7 @@ class ReviewList(generics.ListAPIView):
     # queryset = Review.objects.all()
     serializer_class = ReviewSerializer 
     # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     
     """Get specific review by id"""
     def get_queryset(self):

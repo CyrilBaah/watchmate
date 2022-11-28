@@ -2,6 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from userapp.serializers import RegistrationSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
 
 # Create your views here.
 @api_view(['POST'])
@@ -37,3 +38,10 @@ def registration_view(request):
             # serializer.save()
             # return Response(serializer.data)
             # return Response(serializer.data)
+            
+@api_view(['POST'])
+def logout_view(request):
+    """Logout the account"""
+    if request.method == 'POST':
+        request.user.auth_token.delete()
+        return Response({ "message": "logout successfully" }, status=status.HTTP_200_OK)
