@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+ops/secrets.yml
 
 # C extensions
 *.so
