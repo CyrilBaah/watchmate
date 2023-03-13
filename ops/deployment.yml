@@ -21,4 +21,20 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8000
-        
+        env:
+        - name: SECRET_KEY
+          value: django-insecure-ig!sz9s%$o4gn&@rpo@qp#rn$-!==bb9hc#iptl^i#)aj24trq
+        - name: DB_TYPE
+          value: postgres
+        - name: USE_S3
+          value: 'False'
+        - name: DB_NAME
+          value: watchmate
+        - name: DB_HOST
+          value: aegis-live.ck0dwzfc16xf.eu-west-1.rds.amazonaws.com
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: amalitech
+        - name: DB_PORT
+          value: '5432'
